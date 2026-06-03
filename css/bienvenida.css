@@ -1,0 +1,347 @@
+/* ===== CONFIGURACIÓN GENERAL ===== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Trebuchet MS', sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #0f172a,
+        #1e40af,
+        #2563eb
+    );
+
+    min-height:100vh;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+
+.bienvenida{
+
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:20px;
+}
+
+/* ===== FONDO MATEMÁTICO ===== */
+
+.bienvenida::before{
+
+    content:"π √ ∑ ∞ ÷ × + π √ ∑";
+
+    position:absolute;
+
+    top:10%;
+    left:-20%;
+
+    width:140%;
+
+    font-size:80px;
+
+    color:rgba(255,255,255,.08);
+
+    animation:mover 20s linear infinite;
+}
+
+@keyframes mover{
+
+    from{
+        transform:translateX(-100px);
+    }
+
+    to{
+        transform:translateX(100px);
+    }
+}
+
+/* ===== PANEL CENTRAL ===== */
+
+.bienvenida::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:850px;
+    max-width:90%;
+
+    height:650px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(12px);
+
+    border:3px solid gold;
+
+    border-radius:30px;
+
+    box-shadow:
+    0 0 30px rgba(255,215,0,.25);
+
+    z-index:0;
+}
+
+/* ===== CONTENIDO ENCIMA DEL PANEL ===== */
+
+.bienvenida > *{
+
+    position:relative;
+
+    z-index:1;
+}
+
+/* ===== TITULO ===== */
+
+h1{
+
+    color:white;
+
+    font-size:50px;
+
+    margin-bottom:25px;
+
+    text-shadow:
+    0 0 15px gold,
+    0 0 25px gold;
+}
+
+/* ===== AVATAR ===== */
+
+.avatarGrande{
+
+    width:220px;
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:8px solid gold;
+
+    box-shadow:
+    0 0 25px gold,
+    0 0 45px orange;
+
+    animation:avatar 3s infinite ease-in-out;
+}
+
+@keyframes avatar{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* ===== NOMBRE ===== */
+
+#nombreMostrado{
+
+    color:white;
+
+    font-size:38px;
+
+    margin-top:20px;
+
+    text-shadow:
+    0 0 15px cyan;
+}
+
+/* ===== BOTÓN ACTIVIDAD ===== */
+
+.btnActividad{
+
+    margin-top:30px;
+
+    background:
+    linear-gradient(
+        45deg,
+        #22c55e,
+        #16a34a
+    );
+
+    color:white;
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:18px 40px;
+
+    font-size:22px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 0 20px #22c55e;
+
+    animation:latido 1.2s infinite;
+
+    transition:.3s;
+}
+
+.btnActividad:hover{
+
+    transform:scale(1.08);
+}
+
+/* ===== BOTÓN 4° BÁSICO ===== */
+
+.btnBasico{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:16px 45px;
+
+    background:
+    linear-gradient(
+        45deg,
+        #f59e0b,
+        #fbbf24
+    );
+
+    color:white;
+
+    font-size:22px;
+    font-weight:bold;
+
+    text-decoration:none;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 0 20px rgba(245,158,11,.8);
+
+    transition:.3s;
+}
+
+.btnBasico:hover{
+
+    transform:scale(1.08);
+
+    box-shadow:
+    0 0 30px rgba(245,158,11,1);
+}
+
+/* ===== LATIDO ===== */
+
+@keyframes latido{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+/* ===== ESTRELLAS ===== */
+
+.estrellas{
+
+    margin-top:35px;
+
+    font-size:65px;
+}
+
+.estrellas span{
+
+    display:inline-block;
+
+    margin:0 10px;
+
+    animation:estrella 2s infinite ease-in-out;
+}
+
+.estrellas span:nth-child(2){
+
+    animation-delay:.4s;
+}
+
+.estrellas span:nth-child(3){
+
+    animation-delay:.8s;
+}
+
+@keyframes estrella{
+
+    0%,100%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-18px)
+                rotate(10deg);
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:768px){
+
+    .bienvenida::after{
+
+        width:95%;
+        height:650px;
+    }
+
+    h1{
+        font-size:35px;
+    }
+
+    .avatarGrande{
+
+        width:170px;
+        height:170px;
+    }
+
+    #nombreMostrado{
+        font-size:28px;
+    }
+
+    .btnActividad,
+    .btnBasico{
+
+        font-size:18px;
+
+        padding:14px 25px;
+    }
+
+    .estrellas{
+        font-size:45px;
+    }
+}

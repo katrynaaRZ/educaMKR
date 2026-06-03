@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Matemáticas Divertidas</title>
+
+<link rel="icon" type="image/png" href="img/imagenpestaña.jpg">
+<link rel="stylesheet" href="css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+<div class="contenedor">
+
+    <img src="img/imagenlogin.jpg" class="logo" alt="Logo">
+
+    <h1>🔢 Mundo Matemático 🔢</h1>
+
+    <div class="panel">
+
+        <label>Tu nombre:</label>
+
+        <input
+            type="text"
+            id="nombre"
+            placeholder="Escribe tu nombre">
+
+        <h2>Elige tu avatar</h2>
+
+        <div class="avatars">
+
+            <img src="img/icono1.PNG" onclick="seleccionarAvatar(this)">
+            <img src="img/icono2.PNG" onclick="seleccionarAvatar(this)">
+            <img src="img/icono3.PNG" onclick="seleccionarAvatar(this)">
+            <img src="img/icono4.PNG" onclick="seleccionarAvatar(this)">
+
+        </div>
+
+        <button onclick="ingresar()">
+            🚀 INGRESAR
+        </button>
+
+    </div>
+
+</div>
+
+<audio id="aplausos" src="audio/audioingreso.mp3"></audio>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

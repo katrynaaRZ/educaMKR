@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Paw Patrol Matemáticas</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/imagenpestaña.jpg">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/actividad2.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Título -->
+        <h1>🐶 Misión de Sumas 🐶</h1>
+
+        <h2>
+            Arrastra la respuesta correcta hacia cada suma
+        </h2>
+
+        <!-- Imagen principal -->
+        <img src="img/imagenperros.jpg" class="perro-principal">
+
+        <!-- Botón comenzar -->
+        <button id="btnComenzar" class="btn-jugar">
+            Comenzar
+        </button>
+
+        <!-- Juego -->
+        <div id="zonaJuego" class="oculto">
+
+            <!-- Preguntas -->
+            <div class="preguntas">
+
+                <div class="pregunta-box">
+
+                    <div class="pregunta">
+                        2 + 1 =
+                    </div>
+
+                    <div class="drop-zone" data-correcto="3"></div>
+
+                </div>
+
+                <div class="pregunta-box">
+
+                    <div class="pregunta">
+                        4 + 1 =
+                    </div>
+
+                    <div class="drop-zone" data-correcto="5"></div>
+
+                </div>
+
+                <div class="pregunta-box">
+
+                    <div class="pregunta">
+                        3 + 3 =
+                    </div>
+
+                    <div class="drop-zone" data-correcto="6"></div>
+
+                </div>
+
+            </div>
+
+            <!-- Respuestas -->
+            <div class="respuestas">
+
+                <div class="respuesta" draggable="true">
+                    6
+                </div>
+
+                <div class="respuesta" draggable="true">
+                    3
+                </div>
+
+                <div class="respuesta" draggable="true">
+                    5
+                </div>
+
+            </div>
+
+            <!-- Botones -->
+            <div class="botones">
+
+                <button id="btnComprobar">
+                    Comprobar
+                </button>
+
+                <button id="btnReintentar">
+                    Intentar nuevamente
+                </button>
+
+                <button id="btnSiguiente">
+                    Siguiente
+                </button>
+
+            </div>
+
+            <!-- Mensaje -->
+            <div id="mensaje"></div>
+
+        </div>
+
+    </div>
+
+    <!-- Audios -->
+    <audio id="audioCorrecto" src="sonidos/correcto.mp3"></audio>
+
+    <audio id="audioIncorrecto" src="sonidos/incorrecto.mp3"></audio>
+
+    <audio id="audioFinal" src="sonidos/logrado.mp3"></audio>
+
+    <!-- JS -->
+    <script src="js/actividad2.js"></script>
+
+</body>
+
+</html>

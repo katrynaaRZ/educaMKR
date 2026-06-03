@@ -1,0 +1,251 @@
+/* ===== BASE INFANTIL 4° BÁSICO ===== */
+
+body{
+    margin:0;
+    font-family:'Comic Sans MS', cursive, sans-serif;
+
+    background:
+    linear-gradient(
+        180deg,
+        #87CEEB,
+        #E0F7FA,
+        #ffffff
+    );
+
+    color:#1e3a8a;
+    text-align:center;
+
+    min-height:100vh;
+
+    position:relative;
+    overflow-x:hidden;
+}
+
+/* ===== FONDO MATEMÁTICO SUAVE ===== */
+
+body::before{
+
+    content:"➕ ➖ ✖️ ➗ 1 2 3 4 5 6 7 8 9";
+
+    position:absolute;
+
+    top:15%;
+    left:-10%;
+
+    width:120%;
+
+    font-size:70px;
+
+    color:rgba(30,58,138,.08);
+
+    animation:mover 18s linear infinite;
+
+    pointer-events:none;
+}
+
+@keyframes mover{
+    from{transform:translateX(-80px);}
+    to{transform:translateX(80px);}
+}
+
+/* ===== CONTENEDOR ===== */
+
+.contenedor{
+    padding:25px;
+}
+
+/* ===== LOGO ===== */
+
+.logo{
+    width:140px;
+    filter:drop-shadow(0 0 10px rgba(0,0,0,.2));
+    animation:flotar 3s ease-in-out infinite;
+}
+
+@keyframes flotar{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+    100%{transform:translateY(0);}
+}
+
+/* ===== TITULO ===== */
+
+h1{
+    font-size:42px;
+    color:#1565C0;
+    text-shadow:0 0 10px rgba(21,101,192,.3);
+}
+
+/* ===== PANEL INFANTIL ===== */
+
+.panel{
+    background:#ffffff;
+
+    color:#333;
+
+    max-width:800px;
+    margin:auto;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    border:6px solid #FFD54F;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+/* ===== INPUT ===== */
+
+input{
+    width:85%;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    border:3px solid #42A5F5;
+
+    font-size:20px;
+
+    text-align:center;
+
+    outline:none;
+}
+
+input:focus{
+    box-shadow:0 0 10px #42A5F5;
+}
+
+/* ===== AVATARES ===== */
+
+.avatars{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+    margin-top:20px;
+}
+
+.avatars img{
+    width:110px;
+    height:110px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    border:4px solid transparent;
+}
+
+.avatars img:hover{
+    transform:scale(1.1);
+}
+
+/* seleccionado */
+.seleccionado{
+    border:4px solid #FFD54F !important;
+    box-shadow:0 0 15px gold;
+}
+
+/* ===== BOTÓN ===== */
+
+button{
+    margin-top:25px;
+
+    background:#4CAF50;
+
+    color:white;
+
+    border:none;
+
+    padding:16px 35px;
+
+    border-radius:20px;
+
+    font-size:20px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 5px 0 #2e7d32;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+/* ===== BIENVENIDA ===== */
+
+.bienvenida{
+    padding-top:40px;
+}
+
+/* ===== AVATAR GRANDE ===== */
+
+.avatarGrande{
+    width:200px;
+
+    border-radius:50%;
+
+    border:6px solid #FFD54F;
+
+    box-shadow:0 0 20px rgba(0,0,0,.2);
+}
+
+/* ===== BOTÓN ACTIVIDAD ===== */
+
+.btnActividad{
+    display:block;
+    margin:25px auto;
+
+    animation:latido 1.2s infinite;
+}
+
+@keyframes latido{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.08);}
+    100%{transform:scale(1);}
+}
+
+/* ===== ESTRELLAS ===== */
+
+.estrellas{
+    font-size:55px;
+    margin-top:20px;
+
+    animation:flotarEstrellas 2s infinite ease-in-out;
+}
+
+@keyframes flotarEstrellas{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+    100%{transform:translateY(0);}
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:768px){
+
+    h1{
+        font-size:32px;
+    }
+
+    .panel{
+        width:90%;
+    }
+
+    .avatars img{
+        width:85px;
+        height:85px;
+    }
+
+    button{
+        font-size:18px;
+        padding:14px 25px;
+    }
+}
