@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Juego 5 - Desafío Matemático Final</title>
+
+    <!-- ÍCONO -->
+    <link rel="icon" href="img/imagenpestaña.jpg">
+
+    <link rel="stylesheet" href="css/juego5.css">
+
+    <!-- CONFETI -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+    <h1>🏆 Desafío Matemático Final 🏆</h1>
+
+    <p class="subtitulo">
+        Completa las operaciones arrastrando los números correctos
+    </p>
+
+    <!-- IMÁGENES -->
+    <div class="imagenes">
+
+        <img src="https://cdn-icons-png.flaticon.com/512/2784/2784469.png">
+
+        <img src="https://cdn-icons-png.flaticon.com/512/3405/3405807.png">
+
+        <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png">
+
+        <img src="https://cdn-icons-png.flaticon.com/512/4341/4341139.png">
+
+    </div>
+
+    <!-- PUNTAJE -->
+    <div class="puntaje">
+        ⭐ Puntaje: <span id="score">0</span>
+    </div>
+
+    <!-- CRUCIGRAMA -->
+    <div class="grid">
+
+        <!-- SUMA -->
+        <div class="celda">12</div>
+        <div class="celda">+</div>
+        <div class="dropzone" data-answer="5"></div>
+        <div class="celda">=</div>
+        <div class="celda">17</div>
+
+        <!-- RESTA -->
+        <div class="dropzone" data-answer="14"></div>
+        <div class="celda">-</div>
+        <div class="celda">6</div>
+        <div class="celda">=</div>
+        <div class="celda">8</div>
+
+        <!-- MULTIPLICACIÓN -->
+        <div class="celda">4</div>
+        <div class="celda">×</div>
+        <div class="dropzone" data-answer="5"></div>
+        <div class="celda">=</div>
+        <div class="celda">20</div>
+
+        <!-- DIVISIÓN -->
+        <div class="celda">18</div>
+        <div class="celda">÷</div>
+        <div class="dropzone" data-answer="3"></div>
+        <div class="celda">=</div>
+        <div class="celda">6</div>
+
+        <!-- RESULTADO -->
+        <div class="celda">7</div>
+        <div class="celda">+</div>
+        <div class="celda">8</div>
+        <div class="celda">=</div>
+        <div class="dropzone" data-answer="15"></div>
+
+        <!-- MULTIPLICACIÓN -->
+        <div class="celda">6</div>
+        <div class="celda">×</div>
+        <div class="celda">2</div>
+        <div class="celda">=</div>
+        <div class="dropzone" data-answer="12"></div>
+
+    </div>
+
+    <!-- NÚMEROS -->
+    <div class="numeros-container">
+
+        <div class="numero" draggable="true">15</div>
+
+        <div class="numero" draggable="true">14</div>
+
+        <div class="numero" draggable="true">5</div>
+
+        <div class="numero" draggable="true">12</div>
+
+        <div class="numero" draggable="true">3</div>
+
+        <div class="numero" draggable="true">5</div>
+
+    </div>
+
+    <!-- BOTONES -->
+    <div class="botones">
+
+        <button id="verificar">
+        Verificar
+        </button>
+
+        <button id="reiniciar">
+        Intentar Nuevamente
+        </button>
+
+        <button id="finalizar" disabled>
+        Ir al Resultado Final
+        </button>
+
+    </div>
+
+    <!-- MENSAJE FINAL -->
+    <div id="mensajeFinal" class="mensaje-final"></div>
+
+    </div>
+
+    <!-- AUDIOS -->
+    <audio id="audioCorrecto">
+    <source src="audio/correcto.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="audioIncorrecto">
+    <source src="audio/incorrecto.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="audioClick">
+    <source src="audio/audioingreso.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="js/juego5.js"></script>
+
+</body>
+</html>

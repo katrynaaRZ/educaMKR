@@ -1,0 +1,142 @@
+body{
+    margin:0;
+    padding:0;
+    font-family:'Comic Sans MS', cursive;
+    background:linear-gradient(to bottom, #ffd54f, #ffffff);
+    text-align:center;
+}
+
+.contenedor{
+    padding:20px;
+}
+
+h1{
+    color:#e65100;
+    font-size:48px;
+    margin-bottom:10px;
+}
+
+.subtitulo{
+    font-size:22px;
+    color:#333;
+    margin-bottom:20px;
+}
+
+.imagenes img{
+    width:80px;
+    margin:10px;
+}
+
+.puntaje{
+    font-size:30px;
+    color:#2e7d32;
+    font-weight:bold;
+    margin:20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(5, 100px);
+    justify-content:center;
+    gap:5px;
+    margin-top:30px;
+}
+
+.celda{
+    width:100px;
+    height:100px;
+    background:white;
+    border:3px solid black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:34px;
+    font-weight:bold;
+}
+
+.dropzone{
+    width:100px;
+    height:100px;
+    background:#fff8dc;
+    border:3px dashed #ff6600;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:34px;
+    font-weight:bold;
+    cursor:pointer;
+    user-select:none;
+}
+
+.numeros-container{
+    margin-top:40px;
+}
+
+.numero{
+    width:90px;
+    height:90px;
+    background:#4dd0e1;
+    border:3px solid #006064;
+    border-radius:15px;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    font-size:34px;
+    font-weight:bold;
+    margin:10px;
+    cursor:grab;
+    transition:0.3s;
+}
+
+.numero:hover{
+    transform:scale(1.1);
+}
+
+.botones{
+    margin-top:30px;
+}
+
+button{
+    padding:15px 25px;
+    margin:10px;
+    border:none;
+    border-radius:15px;
+    font-size:20px;
+    cursor:pointer;
+    font-family:'Comic Sans MS';
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+#verificar{
+    background:#43a047;
+    color:white;
+}
+
+#reiniciar{
+    background:#e53935;
+    color:white;
+}
+
+#finalizar{
+    background:#1e88e5;
+    color:white;
+}
+
+.correcto{
+    background:#a5d6a7 !important;
+}
+
+.incorrecto{
+    background:#ef9a9a !important;
+}
+
+.mensaje-final{
+    margin-top:30px;
+    font-size:35px;
+    color:#6a1b9a;
+    font-weight:bold;
+}
