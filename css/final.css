@@ -1,0 +1,154 @@
+body{
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    font-family:'Comic Sans MS', cursive;
+    background:linear-gradient(to bottom, #64b5f6, #ffffff);
+    text-align:center;
+}
+
+.contenedor{
+    padding-top:40px;
+    animation:entrada 2s ease;
+}
+
+h1{
+    font-size:65px;
+    color:#ff9800;
+    animation:rebote 2s infinite;
+}
+
+h2{
+    font-size:35px;
+    color:#4a148c;
+}
+
+.estrellas{
+    margin-top:20px;
+}
+
+.estrellas span{
+    font-size:80px;
+    margin:15px;
+    display:inline-block;
+    animation:flotar 2s infinite;
+}
+
+.estrellas span:nth-child(2){
+    animation-delay:0.5s;
+}
+
+.estrellas span:nth-child(3){
+    animation-delay:1s;
+}
+
+.imagenes img{
+    width:100px;
+    margin:20px;
+    animation:girar 6s linear infinite;
+}
+
+.puntaje-box{
+    margin-top:30px;
+    font-size:45px;
+    font-weight:bold;
+    color:#00695c;
+    background:white;
+    width:500px;
+    margin-left:auto;
+    margin-right:auto;
+    padding:20px;
+    border-radius:20px;
+    border:5px solid #ff9800;
+    box-shadow:0px 0px 20px rgba(0,0,0,0.3);
+}
+
+.mensaje{
+    margin-top:30px;
+    font-size:30px;
+    color:#d84315;
+    font-weight:bold;
+}
+
+.botones-finales{
+    margin-top:40px;
+}
+
+.boton{
+    margin:15px;
+    padding:20px 40px;
+    font-size:28px;
+    border:none;
+    border-radius:20px;
+    background:#43a047;
+    color:white;
+    cursor:pointer;
+    font-family:'Comic Sans MS';
+    transition:0.3s;
+}
+
+.inicio{
+    background:#1e88e5;
+}
+
+.boton:hover{
+    transform:scale(1.1);
+}
+
+@keyframes rebote{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-20px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes flotar{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-15px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes girar{
+
+    0%{
+        transform:rotate(0deg);
+    }
+
+    100%{
+        transform:rotate(360deg);
+    }
+
+}
+
+@keyframes entrada{
+
+    from{
+        opacity:0;
+        transform:scale(0.5);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}

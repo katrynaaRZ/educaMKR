@@ -1,3 +1,47 @@
+// ==========================
+// VOZ DE INSTRUCCIONES
+// ==========================
+
+window.addEventListener('load', ()=>{
+
+    // ESPERAR UN POCO
+    setTimeout(()=>{
+
+        hablarInstrucciones();
+
+    }, 1000);
+
+});
+
+
+// FUNCIÓN DE VOZ
+function hablarInstrucciones(){
+
+    // DETENER VOCES ANTERIORES
+    speechSynthesis.cancel();
+
+    const mensaje = new SpeechSynthesisUtterance();
+
+    mensaje.lang = "es-CL";
+
+    mensaje.text =
+    "Bienvenido al juego de divisiones. Arrastra los números correctos a las casillas vacías para completar las divisiones matemáticas. Luego presiona el botón verificar.";
+
+    mensaje.volume = 1;
+
+    mensaje.rate = 0.9;
+
+    mensaje.pitch = 1;
+
+    speechSynthesis.speak(mensaje);
+
+}
+
+
+// ==========================
+// VARIABLES
+// ==========================
+
 const numeros = document.querySelectorAll('.numero');
 
 const zonas = document.querySelectorAll('.dropzone');
@@ -25,9 +69,9 @@ let score = 0;
 
 numeros.forEach(numero => {
 
-    numero.addEventListener('dragstart', (e) => {
+    numero.addEventListener('dragstart', (e)=>{
 
-        e.dataTransfer.setData("numero", numero.textContent);
+        e.dataTransfer.setData('text/plain', numero.textContent);
 
     });
 
@@ -40,23 +84,21 @@ numeros.forEach(numero => {
 
 zonas.forEach(zona => {
 
-    zona.addEventListener('dragover', (e) => {
+    zona.addEventListener('dragover', (e)=>{
 
         e.preventDefault();
 
     });
 
-    zona.addEventListener('drop', (e) => {
+    zona.addEventListener('drop', (e)=>{
 
         e.preventDefault();
 
-        // OBTENER NÚMERO
-        const numero = e.dataTransfer.getData("numero");
+        const data = e.dataTransfer.getData('text/plain');
 
-        // GUARDAR EN CASILLA
-        zona.textContent = numero;
+        // GUARDAR NÚMERO EN CASILLA
+        zona.textContent = data;
 
-        // ESTILO
         zona.style.color = "#000";
 
         zona.style.fontWeight = "bold";
@@ -78,7 +120,7 @@ zonas.forEach(zona => {
 // VERIFICAR
 // ==========================
 
-verificarBtn.addEventListener('click', () => {
+verificarBtn.addEventListener('click', ()=>{
 
     let correctas = 0;
 
@@ -88,7 +130,7 @@ verificarBtn.addEventListener('click', () => {
 
         const respuestaCorrecta = zona.dataset.answer;
 
-        if (respuestaUsuario === respuestaCorrecta) {
+        if(respuestaUsuario === respuestaCorrecta){
 
             zona.classList.add('correcto');
 
@@ -96,7 +138,7 @@ verificarBtn.addEventListener('click', () => {
 
             correctas++;
 
-        } else {
+        }else{
 
             zona.classList.add('incorrecto');
 
@@ -107,7 +149,7 @@ verificarBtn.addEventListener('click', () => {
     });
 
     // SI TODO ESTÁ CORRECTO
-    if (correctas === zonas.length) {
+    if(correctas === zonas.length){
 
         score = 100;
 
@@ -117,23 +159,51 @@ verificarBtn.addEventListener('click', () => {
 
         siguienteBtn.disabled = false;
 
+        // GUARDAR PUNTAJE
+        localStorage.setItem("puntajeJuego4", score);
+
+        // VOZ FELICITACIÓN
+        const felicidades = new SpeechSynthesisUtterance();
+
+        felicidades.lang = "es-CL";
+
+        felicidades.text =
+        "Felicidades. Obtuviste " + score +
+        " puntos. Puedes avanzar a la siguiente actividad.";
+
+        speechSynthesis.speak(felicidades);
+
+        // CONFETI
         confetti({
 
-            particleCount: 300,
+            particleCount:300,
 
-            spread: 180,
+            spread:180,
 
-            origin: { y: 0.6 }
+            origin:{ y:0.6 }
 
         });
 
-    } else {
+    }else{
 
         score = 0;
 
         scoreText.textContent = score;
 
         audioIncorrecto.play();
+
+        // GUARDAR PUNTAJE
+        localStorage.setItem("puntajeJuego4", score);
+
+        // VOZ INCORRECTO
+        const incorrecto = new SpeechSynthesisUtterance();
+
+        incorrecto.lang = "es-CL";
+
+        incorrecto.text =
+        "Incorrecto. Obtuviste cero puntos. Inténtalo nuevamente.";
+
+        speechSynthesis.speak(incorrecto);
 
     }
 
@@ -144,7 +214,7 @@ verificarBtn.addEventListener('click', () => {
 // REINICIAR
 // ==========================
 
-reiniciarBtn.addEventListener('click', () => {
+reiniciarBtn.addEventListener('click', ()=>{
 
     zonas.forEach(zona => {
 
@@ -163,19 +233,19 @@ reiniciarBtn.addEventListener('click', () => {
 // SIGUIENTE ACTIVIDAD
 // ==========================
 
-siguienteBtn.addEventListener('click', () => {
+siguienteBtn.addEventListener('click', ()=>{
 
     audioClick.play();
 
     confetti({
 
-        particleCount: 400,
+        particleCount:400,
 
-        spread: 200
+        spread:200
 
     });
 
-    setTimeout(() => {
+    setTimeout(()=>{
 
         window.location.href = "juego5.html";
 

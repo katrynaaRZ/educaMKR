@@ -1,3 +1,47 @@
+// ==========================
+// VOZ DE INSTRUCCIONES
+// ==========================
+
+window.addEventListener('load', ()=>{
+
+    // ESPERAR UN POCO
+    setTimeout(()=>{
+
+        hablarInstrucciones();
+
+    }, 1000);
+
+});
+
+
+// FUNCIÓN DE VOZ
+function hablarInstrucciones(){
+
+    // DETENER VOCES ANTERIORES
+    speechSynthesis.cancel();
+
+    const mensaje = new SpeechSynthesisUtterance();
+
+    mensaje.lang = "es-CL";
+
+    mensaje.text =
+    "Bienvenido al desafío matemático final. En esta actividad deberás completar sumas, restas, multiplicaciones y divisiones. Arrastra los números correctos a las casillas vacías y luego presiona el botón verificar para obtener tu puntaje final.";
+
+    mensaje.volume = 1;
+
+    mensaje.rate = 0.9;
+
+    mensaje.pitch = 1;
+
+    speechSynthesis.speak(mensaje);
+
+}
+
+
+// ==========================
+// VARIABLES
+// ==========================
+
 const numeros = document.querySelectorAll('.numero');
 
 const zonas = document.querySelectorAll('.dropzone');
@@ -21,19 +65,25 @@ const audioClick = document.getElementById('audioClick');
 let score = 0;
 
 
+// ==========================
 // DRAG
+// ==========================
+
 numeros.forEach(numero => {
 
     numero.addEventListener('dragstart', (e)=>{
 
-        e.dataTransfer.setData('text', numero.textContent);
+        e.dataTransfer.setData('text/plain', numero.textContent);
 
     });
 
 });
 
 
+// ==========================
 // DROP
+// ==========================
+
 zonas.forEach(zona => {
 
     zona.addEventListener('dragover', (e)=>{
@@ -46,41 +96,43 @@ zonas.forEach(zona => {
 
         e.preventDefault();
 
-        const data = e.dataTransfer.getData('text');
+        const data = e.dataTransfer.getData('text/plain');
 
-        zona.innerHTML = "";
+        // GUARDAR NÚMERO EN CASILLA
+        zona.textContent = data;
 
-        const nuevoNumero = document.createElement("div");
+        zona.style.color = "#000";
 
-        nuevoNumero.textContent = data;
+        zona.style.fontWeight = "bold";
 
-        nuevoNumero.style.width = "100%";
+        zona.style.fontSize = "34px";
 
-        nuevoNumero.style.height = "100%";
+        zona.style.display = "flex";
 
-        nuevoNumero.style.display = "flex";
+        zona.style.justifyContent = "center";
 
-        nuevoNumero.style.justifyContent = "center";
-
-        nuevoNumero.style.alignItems = "center";
-
-        nuevoNumero.style.fontWeight = "bold";
-
-        zona.appendChild(nuevoNumero);
+        zona.style.alignItems = "center";
 
     });
 
 });
 
 
+// ==========================
 // VERIFICAR
+// ==========================
+
 verificarBtn.addEventListener('click', ()=>{
 
     let correctas = 0;
 
     zonas.forEach(zona => {
 
-        if(zona.textContent.trim() === zona.dataset.answer){
+        const respuestaUsuario = zona.textContent.trim();
+
+        const respuestaCorrecta = zona.dataset.answer;
+
+        if(respuestaUsuario === respuestaCorrecta){
 
             zona.classList.add('correcto');
 
@@ -98,7 +150,7 @@ verificarBtn.addEventListener('click', ()=>{
 
     });
 
-    // TODO CORRECTO
+    // SI TODO ESTÁ CORRECTO
     if(correctas === zonas.length){
 
         score = 100;
@@ -109,6 +161,24 @@ verificarBtn.addEventListener('click', ()=>{
 
         finalizarBtn.disabled = false;
 
+        mensajeFinal.textContent =
+        "🎉 ¡Excelente trabajo! 🎉";
+
+        // GUARDAR PUNTAJE
+        localStorage.setItem("puntajeJuego5", score);
+
+        // VOZ FELICITACIÓN
+        const felicidades = new SpeechSynthesisUtterance();
+
+        felicidades.lang = "es-CL";
+
+        felicidades.text =
+        "Felicidades. Obtuviste " + score +
+        " puntos. Has completado el desafío matemático final.";
+
+        speechSynthesis.speak(felicidades);
+
+        // CONFETI
         confetti({
 
             particleCount:400,
@@ -127,17 +197,36 @@ verificarBtn.addEventListener('click', ()=>{
 
         audioIncorrecto.play();
 
+        mensajeFinal.textContent =
+        "❌ Algunas respuestas son incorrectas ❌";
+
+        // GUARDAR PUNTAJE
+        localStorage.setItem("puntajeJuego5", score);
+
+        // VOZ INCORRECTO
+        const incorrecto = new SpeechSynthesisUtterance();
+
+        incorrecto.lang = "es-CL";
+
+        incorrecto.text =
+        "Incorrecto. Obtuviste cero puntos. Inténtalo nuevamente.";
+
+        speechSynthesis.speak(incorrecto);
+
     }
 
 });
 
 
+// ==========================
 // REINICIAR
+// ==========================
+
 reiniciarBtn.addEventListener('click', ()=>{
 
     zonas.forEach(zona => {
 
-        zona.innerHTML = "";
+        zona.textContent = "";
 
         zona.classList.remove('correcto');
 
@@ -145,30 +234,31 @@ reiniciarBtn.addEventListener('click', ()=>{
 
     });
 
+    mensajeFinal.textContent = "";
+
 });
 
 
-// FINALIZAR
+// ==========================
+// IR A RESULTADO FINAL
+// ==========================
+
 finalizarBtn.addEventListener('click', ()=>{
 
     audioClick.play();
 
     confetti({
 
-        particleCount:600,
+        particleCount:500,
 
-        spread:300
+        spread:250
 
     });
 
-    mensajeFinal.innerHTML =
-    "🎉 ¡Felicidades! Completaste todos los juegos matemáticos 🎉";
-
-    // IR A FINAL.HTML
     setTimeout(()=>{
 
         window.location.href = "final.html";
 
-    }, 2500);
+    }, 1500);
 
 });

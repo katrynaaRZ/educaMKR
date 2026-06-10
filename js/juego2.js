@@ -1,3 +1,47 @@
+// ==========================
+// VOZ DE INSTRUCCIONES
+// ==========================
+
+window.addEventListener('load', ()=>{
+
+    // ESPERAR UN POCO
+    setTimeout(()=>{
+
+        hablarInstrucciones();
+
+    }, 1000);
+
+});
+
+
+// FUNCIÓN DE VOZ
+function hablarInstrucciones(){
+
+    // DETENER VOCES ANTERIORES
+    speechSynthesis.cancel();
+
+    const mensaje = new SpeechSynthesisUtterance();
+
+    mensaje.lang = "es-CL";
+
+    mensaje.text =
+    "Bienvenido al juego de restas. Arrastra los números correctos a las casillas vacías para completar las operaciones matemáticas. Luego presiona el botón verificar.";
+
+    mensaje.volume = 1;
+
+    mensaje.rate = 0.9;
+
+    mensaje.pitch = 1;
+
+    speechSynthesis.speak(mensaje);
+
+}
+
+
+// ==========================
+// VARIABLES
+// ==========================
+
 const numeros = document.querySelectorAll('.numero');
 
 const zonas = document.querySelectorAll('.dropzone');
@@ -19,19 +63,25 @@ const audioClick = document.getElementById('audioClick');
 let score = 0;
 
 
+// ==========================
 // DRAG
+// ==========================
+
 numeros.forEach(numero => {
 
     numero.addEventListener('dragstart', (e)=>{
 
-        e.dataTransfer.setData('text', numero.textContent);
+        e.dataTransfer.setData('text/plain', numero.textContent);
 
     });
 
 });
 
 
+// ==========================
 // DROP
+// ==========================
+
 zonas.forEach(zona => {
 
     zona.addEventListener('dragover', (e)=>{
@@ -44,36 +94,43 @@ zonas.forEach(zona => {
 
         e.preventDefault();
 
-        const data = e.dataTransfer.getData('text');
+        const data = e.dataTransfer.getData('text/plain');
 
-        zona.innerHTML = "";
+        // GUARDAR NÚMERO EN CASILLA
+        zona.textContent = data;
 
-        const nuevoNumero = document.createElement("div");
+        zona.style.color = "#000";
 
-        nuevoNumero.textContent = data;
+        zona.style.fontWeight = "bold";
 
-        nuevoNumero.style.width = "100%";
-        nuevoNumero.style.height = "100%";
-        nuevoNumero.style.display = "flex";
-        nuevoNumero.style.justifyContent = "center";
-        nuevoNumero.style.alignItems = "center";
-        nuevoNumero.style.fontWeight = "bold";
+        zona.style.fontSize = "34px";
 
-        zona.appendChild(nuevoNumero);
+        zona.style.display = "flex";
+
+        zona.style.justifyContent = "center";
+
+        zona.style.alignItems = "center";
 
     });
 
 });
 
 
+// ==========================
 // VERIFICAR
+// ==========================
+
 verificarBtn.addEventListener('click', ()=>{
 
     let correctas = 0;
 
     zonas.forEach(zona => {
 
-        if(zona.textContent.trim() === zona.dataset.answer){
+        const respuestaUsuario = zona.textContent.trim();
+
+        const respuestaCorrecta = zona.dataset.answer;
+
+        if(respuestaUsuario === respuestaCorrecta){
 
             zona.classList.add('correcto');
 
@@ -91,7 +148,7 @@ verificarBtn.addEventListener('click', ()=>{
 
     });
 
-    // TODO CORRECTO
+    // SI TODO ESTÁ CORRECTO
     if(correctas === zonas.length){
 
         score = 100;
@@ -102,6 +159,21 @@ verificarBtn.addEventListener('click', ()=>{
 
         siguienteBtn.disabled = false;
 
+        // GUARDAR PUNTAJE
+        localStorage.setItem("puntajeJuego2", score);
+
+        // VOZ FELICITACIÓN
+        const felicidades = new SpeechSynthesisUtterance();
+
+        felicidades.lang = "es-CL";
+
+        felicidades.text =
+        "Felicidades. Obtuviste " + score +
+        " puntos. Puedes avanzar a la siguiente actividad.";
+
+        speechSynthesis.speak(felicidades);
+
+        // CONFETI
         confetti({
 
             particleCount:300,
@@ -120,17 +192,33 @@ verificarBtn.addEventListener('click', ()=>{
 
         audioIncorrecto.play();
 
+        // GUARDAR PUNTAJE
+        localStorage.setItem("puntajeJuego2", score);
+
+        // VOZ INCORRECTO
+        const incorrecto = new SpeechSynthesisUtterance();
+
+        incorrecto.lang = "es-CL";
+
+        incorrecto.text =
+        "Incorrecto. Obtuviste cero puntos. Inténtalo nuevamente.";
+
+        speechSynthesis.speak(incorrecto);
+
     }
 
 });
 
 
+// ==========================
 // REINICIAR
+// ==========================
+
 reiniciarBtn.addEventListener('click', ()=>{
 
     zonas.forEach(zona => {
 
-        zona.innerHTML = "";
+        zona.textContent = "";
 
         zona.classList.remove('correcto');
 
@@ -141,7 +229,10 @@ reiniciarBtn.addEventListener('click', ()=>{
 });
 
 
+// ==========================
 // SIGUIENTE ACTIVIDAD
+// ==========================
+
 siguienteBtn.addEventListener('click', ()=>{
 
     audioClick.play();

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Final del Juego Matemático</title>
+
+    <!-- ICONO -->
+    <link rel="icon" href="img/imagenpestaña.jpg">
+
+    <link rel="stylesheet" href="css/final.css">
+
+    <!-- CONFETI -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>🎉 ¡Felicitaciones! 🎉</h1>
+
+        <h2>Completaste todos los juegos matemáticos</h2>
+
+        <!-- ESTRELLAS -->
+        <div class="estrellas">
+
+            <span>⭐</span>
+
+            <span>⭐</span>
+
+            <span>⭐</span>
+
+        </div>
+
+        <!-- IMÁGENES -->
+        <div class="imagenes">
+
+            <img src="https://cdn-icons-png.flaticon.com/512/2784/2784469.png">
+
+            <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png">
+
+            <img src="https://cdn-icons-png.flaticon.com/512/3405/3405807.png">
+
+        </div>
+
+        <!-- PUNTAJE -->
+        <div class="puntaje-box">
+
+            🏆 Puntaje Final:
+
+            <span id="puntajeFinal">500</span>
+
+            puntos
+
+        </div>
+
+        <!-- MENSAJE -->
+        <p class="mensaje">
+
+            ¡Excelente trabajo! Aprendiste sumas,
+            restas, multiplicaciones y divisiones.
+
+        </p>
+
+        <!-- BOTONES -->
+        <div class="botones-finales">
+
+            <!-- VOLVER A JUGAR -->
+            <a href="juego1.html">
+
+                <button class="boton">
+                    🔄 Volver a Jugar
+                </button>
+
+            </a>
+
+            <!-- IR AL INICIO -->
+            <a href="todos.html">
+
+                <button class="boton inicio">
+                    🏠 Ir al Inicio
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- AUDIO CELEBRACIÓN -->
+    <audio id="audioCelebracion" autoplay>
+
+        <source src="audio/audiofinal.mp3" type="audio/mpeg">
+
+    </audio>
+
+    <script src="js/final.js"></script>
+
+</body>
+</html>
