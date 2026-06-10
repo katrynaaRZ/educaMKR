@@ -75,7 +75,7 @@ function hablarFelicitacion(){
     mensaje.text =
     "Felicitaciones. Lograste aprender sumas, restas, divisiones y multiplicaciones. Tu puntaje total es de " +
     puntajeTotal +
-    " puntos posibles.";
+    " puntos.";
 
     mensaje.volume = 1;
 
